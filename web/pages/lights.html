@@ -1,0 +1,38 @@
+<div class="col-sm-11">
+
+<div class="col-sm-12 header">
+  <h1 ng-repeat="zone in zones" ng-if="zone.id == $storage.defaultZone">{{zone.name}}</h1>
+</div>
+<div class="col-sm-12">
+  <div class="panel panel-clear">
+    <div class="panel-body">
+      <div style="" class="col-sm-2 light" ng-repeat="device in devicelist" ng-if="device.class == 'light' || device.class == 'socket'">
+        <div ng-if="device.state.dim >= 0 && device.state.dim <= 1">
+          <div ng-show="device.state.onoff == false"  hm-tap="tap(device.id, true)" hm-press="press(device)"  id="device-light" style="margin-bottom:10px;margin-top:5px;background:rgba(255,255,255,0.2);background-size: cover;-webkit-mask-size: contain;-webkit-mask-position: center center;-webkit-mask-repeat: no-repeat;width:100%;height:50px;-webkit-mask-image: url(http://{{config.homey_ip}}{{device.icon}});"> </div>
+          <div ng-show="device.state.onoff == true"  hm-tap="tap(device.id, false)" hm-press="press(device)"  id="device-light" style="margin-bottom:10px;margin-top:5px;background:rgba(255,255,255,0.9);background-size: cover;-webkit-mask-size: contain;-webkit-mask-position: center center;-webkit-mask-repeat: no-repeat;width:100%;height:50px;-webkit-mask-image: url(http://{{config.homey_ip}}{{device.icon}});"> </div>
+        </div>
+        <div ng-if="!(device.state.dim >= 0) && !(device.state.dim <= 1)">
+          <div ng-show="device.state.onoff == false"  hm-tap="tap(device.id, true)"  id="device-light" style="margin-bottom:10px;margin-top:5px;background:rgba(255,255,255,0.2);background-size: cover;-webkit-mask-size: contain;-webkit-mask-position: center center;-webkit-mask-repeat: no-repeat;width:100%;height:50px;-webkit-mask-image: url(http://{{config.homey_ip}}{{device.icon}});"> </div>
+          <div ng-show="device.state.onoff == true"  hm-tap="tap(device.id, false)"  id="device-light" style="margin-bottom:10px;margin-top:5px;background:rgba(255,255,255,0.9);background-size: cover;-webkit-mask-size: contain;-webkit-mask-position: center center;-webkit-mask-repeat: no-repeat;width:100%;height:50px;-webkit-mask-image: url(http://{{config.homey_ip}}{{device.icon}});"> </div>
+        </div>
+        <span class="devicename">{{device.name}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="show" id="sensorsBar" ng-if="sidebarState">
+  <h2>Sensors</h2>
+  <div style="width:100%;padding:0px;"ng-repeat="device in devicelist" ng-if="device.class == 'sensor' || device.class == 'thermostat'">
+    <span class="devicename"><small><b>{{device.name}}</b></small></span>
+    <table style="width:100%;">
+      <tr  class="capability" ng-repeat="(key, value) in device.state">
+        <td style="width:80%;color:rgba(255,255,255,0.7);"><small>{{key | capability}}</small></td>
+        <td style="width:20%;color:rgba(255,255,255,1);"><small>{{value}} {{key | output}}</small></td>
+      </tr>
+    </table>
+    <br/>
+  </div>
+</div>

@@ -1,28 +1,80 @@
 <!doctype html>
 <html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="/icon.png">
+  <title>HomeyDash</title>
+  <meta charset="UTF-8">
+  <link rel="manifest" href="manifest.json">
+  <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="lib/stylesheets/styles.css" charset="utf-8">
+  <!-- Angular must be included in the head so that the templates work properly -->
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
+  <script src="lib/scripts/ui-bootstrap-tpls-2.0.1.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.0.0/lodash.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.11/angular-filter.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.5.0/annyang.min.js"></script>
+  <script src="lib/scripts/hammer.min.js"></script>
+  <script src="lib/scripts/angular.hammer.min.js"></script>
+  <script src="lib/scripts/app.js"></script>
+  <script src="lib/scripts/controllers.js"></script>
+</head>
+  <body ng-controller="mainController" ng-cloak hm-swipeleft="swipe('left')" hm-swiperight="swipe('right')">
+  <img id="full_bg" src="lib/images/bg.jpg">
 
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
 
-    <link rel="stylesheet" href="styles/main.css">
-  </head>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-1 sidebar">
+          <div class="logo">
+            <img src="lib/images/logo.png"/>
+          </div>
+          <div class="menu">
+            <ul>
+              <li><a href="#/"><i class="material-icons">power</i><br/>Lights</a></li>
+            </ul>
+          </div>
+          <a class="btn btn-clear" ng-click="openSettings()" style="position:absolute;bottom:10px;"><i class="material-icons">settings</i></a>
+        </div>
+        <div ng-view>
 
-  <body ng-app="homeydash">
-
-    <div ng-controller="MainCtrl">
-      <h1>{{token}}</h1>
+        </div>
+      </div>
     </div>
 
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 
-    <script src="app.js"></script>
-    <script src="controllers/main.js"></script>
+
 
   </body>
 
 </html>
+
+<script type="text/ng-template" id="settings_modal.html">
+    <div class="modal-header">
+        <h3 class="modal-title" style="color:#000;">Settings</h3>
+    </div>
+    <div class="modal-body">
+      <ul class="row">
+        <li class="col-sm-6 zone-item" ng-repeat="zone in zones" ng-click="saveSettings(zone.id)">
+          <span class="col-sm-12" style="color:#000;">
+          <div class="" style="margin-right:20px;float:left;-webkit-mask-size: contain;background: #000;-webkit-mask-position: center center;-webkit-mask-repeat: no-repeat;width: 26px;height: 26px;-webkit-mask-image: url(http://{{config.homey_ip}}/manager/zones/assets/icons/{{zone.icon}}.svg)"></div>
+          {{zone.name}}
+          </span>
+        </li>
+      </ul>
+    </div>
+</script>
+
+    <script type="text/ng-template" id="devicesettings_modal.html">
+        <div class="modal-body" style="color:#000;">
+          <form style="text-align:center;">
+            <h1>{{(100*thisdevice.state.dim)| number:0}}%</h1>
+            <input ng-if="thisdevice.state.dim >= 0 || thisdevice.state.dim <= 1" type="range" min="0" max="1" step="0.01" autofocus ng-model="thisdevice.state.dim" ng-change="setDimLevel()">
+          </form>
+        </div>
+    </script>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+    <head>
+      <script type="text/javascript" src="/manager/webserver/assets/js/jquery.js"></script>
+    <script type="text/javascript" src="/manager/webserver/assets/js/angular.js"></script>
+    <script>
+    angular.module('homeydashSettings', []).controller('settingsCtrl', ['$scope', function($scope) {
+
+      Homey.get('dashboardRunning', function(err, state){
+          $scope.serverStatus = state;
+          console.log(state);
+      });
+      Homey.get('dashboardAutostart', function(err, result){
+          $scope.autostart = result;
+      });
+      Homey.get('dashboardToken', function(err, result){
+          $scope.bearertoken = result;
+      });
+
+      $scope.stopServer = function() {
+        $scope.serverStatus = false;
+        Homey.api( 'GET', '/stop', function( err, result ){
+          if( err ) return console.error( err );
+          console.log( result );
+        });
+      };
+      $scope.startServer = function() {
+        $scope.serverStatus = true;
+        Homey.api( 'GET', '/start', function( err, result ){
+          if( err ) return console.error( err );
+          console.log( result );
+        });
+
+        Homey.set('dashboardToken', $scope.bearertoken);
+        Homey.set('dashboardAutostart', $scope.autostart);
+
+      };
+
+
+
+    }]);
+    function onHomeyReady(){
+        angular.bootstrap(document, ['homeydashSettings']);
+        Homey.ready();
+      }
+    </script>
+    </head>
+    <body ng-controller="settingsCtrl" ng-cloaked>
+      <div style="width:300px;">
+        <img src="logo.png" />
+
+            <div class="field row">
+                <label for="bearertoken">Bearer Token</label>
+                <input id="bearertoken" name="bearertoken" ng-model="bearertoken" type="text" value="" ng-disabled="serverStatus" />
+            </div>
+            <div class="field row">
+                <label for="autostart">Auto start</label>
+                <input id="autostart" name="autostart" ng-model="autostart" type="checkbox" value="" ng-disabled="serverStatus" />
+            </div>
+
+
+        <button id="stopDash" ng-disabled="!serverStatus" class="" style="margin-right:15px;display:inline-block;" ng-click="stopServer()">Stop server</button>
+        <button id="startDash" ng-disabled="serverStatus" class="" style="display:inline-block;" ng-click="startServer()">Start server</button>
+      </div>
+
+
+    </body>
+</html>
