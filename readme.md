@@ -1,5 +1,4 @@
 ## HomeyDash for Homey
 
-Proof of concept using Express and Angular.
-Standard the app opens up the port 1337 on Homey.
-When you access: http://yourhomeyip:1337 you should see your bearer token that is stored in the (excisting) cookie.
+BETA Release HomeyDash for homey.
+Add your bearer token to the settings, the dashboard will be available on http://yourhomeyip:1337.

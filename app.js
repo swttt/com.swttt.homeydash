@@ -7,7 +7,7 @@ var Inert = require('inert');
 
 var token = 'da3110b6042fae4bd73713189240fc8c797da0c7';
 var server = "";
-
+var config = null;
 
 
 //app.use('/',express.static(path.join(__dirname, 'web')));
@@ -16,80 +16,97 @@ var server = "";
 
 function init() {
 
-	Homey.log("HomeyDash started!");
-  Homey.manager('settings').set( 'dashboardRunning', false);
+    Homey.log("HomeyDash started!");
+    config = Homey.manager('settings').get('config');
+    console.log(config);
+    config.homeyip = ip.address();
+    Homey.manager('settings').set('dashboardRunning', false);
 
-  //If bearer token is set and auto restart is enabled, run te server.
-  if(typeof Homey.manager('settings').get( 'dashboardToken' ) !== 'undefined'){
-    if(Homey.manager('settings').get( 'dashboardAutostart' ) === true){
-      startServer();
+    //If bearer token is set and auto restart is enabled, run te server.
+    if (typeof config.bearertoken !== 'undefined') {
+        if (config.autostart === true) {
+            startServer();
+        }
     }
-  }
 
 }
 
 
 
-function startServer(){
+function startServer() {
 
 
-  // app.get('/config.json', function(req, res) {
-  //   res.send({homey_ip: ip.address(), homey_api: token, homey_enablespeech: false});
-  // });
-  // app.use('/',express.static(path.join(__dirname, 'web')));
-  // app.use('/bower_components',express.static(path.join(__dirname, 'web/bower_components')));
-  // app.use('/styles',express.static(path.join(__dirname, 'web/styles')));
-  // app.use('/controllers',express.static(path.join(__dirname, 'web/controllers')));
-  server = new Hapi.Server({
-      connections: {
-          routes: {
-              files: {
-                  relativeTo: Path.join(__dirname, 'web')
-              }
-          }
-      }
-  });
+    // app.get('/config.json', function(req, res) {
+    //   res.send({homey_ip: ip.address(), homey_api: token, homey_enablespeech: false});
+    // });
+    // app.use('/',express.static(path.join(__dirname, 'web')));
+    // app.use('/bower_components',express.static(path.join(__dirname, 'web/bower_components')));
+    // app.use('/styles',express.static(path.join(__dirname, 'web/styles')));
+    // app.use('/controllers',express.static(path.join(__dirname, 'web/controllers')));
+    server = new Hapi.Server({
+        connections: {
+            routes: {
+                files: {
+                    relativeTo: Path.join(__dirname, 'web')
+                }
+            }
+        }
+    });
 
 
 
-  server.register(Inert, () => {});
+    server.register(Inert, () => {});
 
-  server.connection({ port: 1337 });
-  server.route({
-    method: 'GET',
-    path: '/config.json',
-    handler: function (request, reply) {
-      reply({homey_ip: ip.address(), homey_api: Homey.manager('settings').get( 'dashboardToken' ), homey_enablespeech: false});
-    }
-  });
+    server.connection({
+        port: 1337
+    });
+    server.route({
+        method: 'GET',
+        path: '/config.json',
+        handler: function(request, reply) {
+            reply(config);
+        }
+    });
 
-  server.route({
-      method: 'GET',
-      path: '/{param*}',
-      handler: {
-          directory: {
-              path: '.',
-              redirectToSlash: true,
-              index: true
-          }
-      }
-  });
+    server.route({
+        method: 'GET',
+        path: '/{param*}',
+        handler: {
+            directory: {
+                path: '.',
+                redirectToSlash: true,
+                index: true
+            }
+        }
+    });
 
-  server.start(function(err) {
-    console.log("Started server!");
-    Homey.manager('settings').set( 'dashboardRunning', true);
-  })
+    server.start(function(err) {
+        console.log("Started server!");
+        Homey.manager('settings').set('dashboardRunning', true);
+    })
 
 
 };
 
-function stopServer(){
-  server.stop();
-  console.log("Stopped server!");
-  Homey.manager('settings').set( 'dashboardRunning', false);
-  server = "";
+function stopServer() {
+    server.stop();
+    console.log("Stopped server!");
+    Homey.manager('settings').set('dashboardRunning', false);
+    server = "";
 };
+
+function saveNewSettings(newconfig) {
+    config = newconfig;
+    Homey.manager('settings').set('config', newconfig);
+
+
+
+
+
+};
+
 
 module.exports.init = init;
 module.exports.startServer = startServer;
 module.exports.stopServer = stopServer;
+module.exports.saveNewSettings = saveNewSettings;

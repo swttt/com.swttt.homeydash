@@ -26,6 +26,9 @@ exports.header = function (header, length) {
 
     const result = [];
     const ranges = parts[1].match(/\d*\-\d*/g);
+
+    // Handle headers with multiple ranges
+
     for (let i = 0; i < ranges.length; ++i) {
         let range = ranges[i];
         if (range.length === 1) {               // '-'
@@ -103,6 +106,8 @@ Hoek.inherits(internals.Stream, Stream.Transform);
 
 internals.Stream.prototype._transform = function (chunk, encoding, done) {
 
+    // Read desired range from a stream
+
     const pos = this._next;
     this._next = this._next + chunk.length;
 
@@ -111,6 +116,8 @@ internals.Stream.prototype._transform = function (chunk, encoding, done) {
 
         return done();
     }
+
+    // Calc bounds of chunk to read
 
     const from = Math.max(0, this._range.from - pos);
     const to = Math.min(chunk.length, this._range.to - pos + 1);
