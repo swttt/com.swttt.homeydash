@@ -22,7 +22,6 @@ function init() {
     if (Homey.manager('settings').get('config') !== undefined) {
         config = Homey.manager('settings').get('config');
         config.homeyip = ip.address();
-        config.pages = {};
         console.log('Config found!');
         console.log(config);
     }
