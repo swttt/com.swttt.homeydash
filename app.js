@@ -7,7 +7,7 @@ var Inert = require('inert');
 
 //var token = '';
 var server = "";
-var config = {};
+//var config = {};
 
 
 //app.use('/',express.static(path.join(__dirname, 'web')));
@@ -17,7 +17,7 @@ var config = {};
 function init() {
 
     Homey.log("HomeyDash started!");
-    config = Homey.manager('settings').get('config');
+    var config = Homey.manager('settings').get('config');
     Homey.manager('settings').set('dashboardRunning', false);
 
     //If bearer token is set and auto restart is enabled, run te server.
