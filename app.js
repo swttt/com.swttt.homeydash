@@ -18,8 +18,6 @@ function init() {
 
     Homey.log("HomeyDash started!");
     config = Homey.manager('settings').get('config');
-    console.log(config);
-    config.homeyip = ip.address();
     Homey.manager('settings').set('dashboardRunning', false);
 
     //If bearer token is set and auto restart is enabled, run te server.
@@ -36,6 +34,8 @@ function init() {
 function startServer() {
 
 
+    config.homeyip = ip.address();
+    console.log(config);
     // app.get('/config.json', function(req, res) {
     //   res.send({homey_ip: ip.address(), homey_api: token, homey_enablespeech: false});
     // });
