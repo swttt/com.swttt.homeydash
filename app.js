@@ -5,9 +5,9 @@ var ip = require('ip');
 var Path = require('path');
 var Inert = require('inert');
 
-var token = 'da3110b6042fae4bd73713189240fc8c797da0c7';
+//var token = '';
 var server = "";
-var config = null;
+var config = "";
 
 
 //app.use('/',express.static(path.join(__dirname, 'web')));
