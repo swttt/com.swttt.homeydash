@@ -7,7 +7,7 @@ var Inert = require('inert');
 
 //var token = '';
 var server = "";
-var config = "";
+var config = {};
 
 
 //app.use('/',express.static(path.join(__dirname, 'web')));
