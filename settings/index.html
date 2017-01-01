@@ -31,12 +31,13 @@
                 };
                 $scope.startServer = function() {
                     $scope.serverStatus = true;
-                    Homey.api('POST', '/start', function(err, result) {
+                    Homey.set('config', $scope.config);
+                    Homey.api('POST', '/start', null, function(err, result) {
                         if (err) return console.error(err);
                         console.log(result);
                     });
 
-                    Homey.set('config', $scope.config);
+
 
                 };
 

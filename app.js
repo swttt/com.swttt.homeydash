@@ -7,7 +7,7 @@ var Inert = require('inert');
 
 //var token = '';
 var server = "";
-var config = "";
+var config = {};
 
 
 
@@ -18,12 +18,15 @@ var config = "";
 function init() {
 
     Homey.log("HomeyDash started!");
-    console.log(Homey.manager('settings').get('config'));
+
     if (Homey.manager('settings').get('config') !== undefined) {
         config = Homey.manager('settings').get('config');
         config.homeyip = ip.address();
+        config.pages = {};
+        console.log('Config found!');
         console.log(config);
     }
+
 
     Homey.manager('settings').set('dashboardRunning', false);
 
@@ -37,11 +40,17 @@ function init() {
 
 }
 
-
+Homey.manager('settings').on('set', function(setting) {
+    if (setting == 'config') {
+        console.log('New config settings!')
+        config = Homey.manager('settings').get('config');
+        config.homeyip = ip.address();
+        config.pages = {};
+        console.log(config);
+    }
+});
 
 function startServer() {
-
-
 
     // app.get('/config.json', function(req, res) {
     //   res.send({homey_ip: ip.address(), homey_api: token, homey_enablespeech: false});
@@ -105,6 +114,7 @@ function stopServer() {
 function saveNewSettings(newconfig) {
     config = newconfig;
     Homey.manager('settings').set('config', newconfig);
+    console.log('New settings!');
     console.log(config);
 
 
