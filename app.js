@@ -45,7 +45,9 @@ Homey.manager('settings').on('set', function(setting) {
         console.log('New config settings!')
         config = Homey.manager('settings').get('config');
         config.homeyip = ip.address();
-        config.pages = {};
+        if (config.pages == undefined) {
+            config.pages = {};
+        }
         console.log(config);
     }
 });
@@ -115,7 +117,7 @@ function saveNewSettings(newconfig) {
     config = newconfig;
     Homey.manager('settings').set('config', newconfig);
     console.log('New settings!');
-    console.log(config);
+    console.log(newconfig);
 
 
 
