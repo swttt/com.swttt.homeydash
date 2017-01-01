@@ -7,7 +7,8 @@ var Inert = require('inert');
 
 //var token = '';
 var server = "";
-//var config = {};
+var config = "";
+
 
 
 //app.use('/',express.static(path.join(__dirname, 'web')));
@@ -17,15 +18,22 @@ var server = "";
 function init() {
 
     Homey.log("HomeyDash started!");
-    var config = Homey.manager('settings').get('config');
+    console.log(Homey.manager('settings').get('config'));
+    if (Homey.manager('settings').get('config') !== undefined) {
+        config = Homey.manager('settings').get('config');
+        config.homeyip = ip.address();
+        console.log(config);
+    }
+
     Homey.manager('settings').set('dashboardRunning', false);
 
     //If bearer token is set and auto restart is enabled, run te server.
-    if (typeof config.bearertoken !== 'undefined') {
+    if (typeof config.bearertoken !== undefined) {
         if (config.autostart === true) {
             startServer();
         }
     }
+
 
 }
 
@@ -34,8 +42,7 @@ function init() {
 function startServer() {
 
 
-    config.homeyip = ip.address();
-    console.log(config);
+
     // app.get('/config.json', function(req, res) {
     //   res.send({homey_ip: ip.address(), homey_api: token, homey_enablespeech: false});
     // });
@@ -98,7 +105,7 @@ function stopServer() {
 function saveNewSettings(newconfig) {
     config = newconfig;
     Homey.manager('settings').set('config', newconfig);
-
+    console.log(config);
 
 
 
