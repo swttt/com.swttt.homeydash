@@ -1,7 +1,7 @@
 {
     "name": "com.swttt.homeydash",
     "version": "0.0.1",
-    "description": "Proof of concept using Express and Angular. Standard the app opens up the port 1337 on Homey. When you access: http://yourhomeyip:1337 you should see your bearer token that is stored in the (excisting) cookie.",
+    "description": "A dashboard for Homey",
     "main": "app.js",
     "dependencies": {
         "hapi": "^15.2.0",
