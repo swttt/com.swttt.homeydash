@@ -3,10 +3,19 @@
     "name": {
         "en": "HomeyDash"
     },
-    "version": "0.0.2",
+    "version": "0.0.1",
     "compatibility": "0.x || 1.x",
     "author": {
         "name": "Bas Jansen",
-        "email": "bas@balotti.com"
+        "email": "b@sjansen.email"
+    },
+    "category": "internet",
+    "description": {
+        "en": "A dashboard for Homey",
+        "nl": "Een dashboard voor Homey"
+    },
+    "images": {
+        "large": "./assets/images/large.jpg",
+        "small": "./assets/images/small.jpg"
     }
 }
