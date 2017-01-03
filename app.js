@@ -5,33 +5,30 @@ var ip = require('ip');
 var Path = require('path');
 var Inert = require('inert');
 
-//var token = '';
+
 var server = "";
 var config = {};
 
 
 
-//app.use('/',express.static(path.join(__dirname, 'web')));
 
 
 
 function init() {
+    // Start with running state on false
+    Homey.manager('settings').set('dashboardRunning', false);
 
     Homey.log("HomeyDash started!");
 
-    if (Homey.manager('settings').get('config') !== undefined) {
+    // Check if settings excists
+    if (Homey.manager('settings').get('config')) {
         config = Homey.manager('settings').get('config');
-        config.homeyip = ip.address();
         console.log('Config found!');
         console.log(config);
-    }
 
-
-    Homey.manager('settings').set('dashboardRunning', false);
-
-    //If bearer token is set and auto restart is enabled, run te server.
-    if (typeof config.bearertoken !== undefined) {
-        if (config.autostart === true) {
+        //If autostart is true, run server.
+        if (Homey.manager('settings').get('config').autostart === true) {
+            console.log('autostart found!')
             startServer();
         }
     }
@@ -43,9 +40,11 @@ Homey.manager('settings').on('set', function(setting) {
     if (setting == 'config') {
         console.log('New config settings!')
         config = Homey.manager('settings').get('config');
-        config.homeyip = ip.address();
-        if (config.pages == undefined) {
+        if (!config.pages) {
             config.pages = {};
+        }
+        if (!config.general) {
+            config.general = {};
         }
         console.log(config);
     }
@@ -53,13 +52,6 @@ Homey.manager('settings').on('set', function(setting) {
 
 function startServer() {
 
-    // app.get('/config.json', function(req, res) {
-    //   res.send({homey_ip: ip.address(), homey_api: token, homey_enablespeech: false});
-    // });
-    // app.use('/',express.static(path.join(__dirname, 'web')));
-    // app.use('/bower_components',express.static(path.join(__dirname, 'web/bower_components')));
-    // app.use('/styles',express.static(path.join(__dirname, 'web/styles')));
-    // app.use('/controllers',express.static(path.join(__dirname, 'web/controllers')));
     server = new Hapi.Server({
         connections: {
             routes: {

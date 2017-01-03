@@ -6,15 +6,17 @@
     <script type="text/javascript" src="/manager/webserver/assets/js/angular.js"></script>
     <script>
         angular.module('homeydashSettings', [])
-            .controller('settingsCtrl', ['$scope', function($scope) {
+            .controller('settingsCtrl', ['$scope', '$location', function($scope, $location) {
 
-                $scope.config = null;
+                $scope.config = {};
                 $scope.serverStatus = null;
 
                 Homey.get('config', function(err, state) {
-                    $scope.config = state;
-                    console.log(state);
-                    $scope.$apply();
+                    if (state) {
+                        $scope.config = state;
+                        console.log(state);
+                        $scope.$apply();
+                    };
                 });
 
                 Homey.get('dashboardRunning', function(err, state) {
@@ -30,12 +32,19 @@
                     });
                 };
                 $scope.startServer = function() {
-                    $scope.serverStatus = true;
-                    Homey.set('config', $scope.config);
-                    Homey.api('POST', '/start', null, function(err, result) {
-                        if (err) return console.error(err);
-                        console.log(result);
-                    });
+                    if (!$scope.config.bearertoken) {
+                        $scope.error = 'Please fill in your bearer token before you start the server.'
+                    } else {
+                        $scope.error = false;
+                        $scope.protocol = $location.protocol();
+                        $scope.config.homeyip = $location.host();
+                        $scope.serverStatus = true;
+                        Homey.set('config', $scope.config);
+                        Homey.api('POST', '/start', null, function(err, result) {
+                            if (err) return console.error(err);
+                            console.log(result);
+                        });
+                    }
 
 
 
@@ -54,21 +63,26 @@
 
 <body ng-controller="settingsCtrl" ng-cloak>
     <div style="width:300px;">
-        <img src="logo.png" />
+        <img style="" src="logo.png" />
 
         <div class="field row">
             <label for="bearertoken">Bearer Token</label>
-            <input id="bearertoken" name="bearertoken" ng-model="config.bearertoken" type="text" ng-disabled="serverStatus" />
+            <input style="width:280px;" id="bearertoken" name="bearertoken" ng-model="config.bearertoken" type="text" ng-disabled="serverStatus" />
         </div>
         <div class="field row">
             <label for="autostart">Auto start</label>
             <input id="autostart" name="autostart" ng-model="config.autostart" type="checkbox" ng-disabled="serverStatus" />
         </div>
 
+        <div ng-if="error" style="color:red;font-weight:bold;margin-top:10px;margin-bottom:10px;width:300px;">{{error}} </div>
+        <div ng-if="serverStatus" style="font-weight:bold;margin-top:10px;margin-bottom:10px;width:300px;">Your HomeyDash is running <a target="_blank" ng-href="//{{config.homeyip}}:1337">here! </a></div>
 
-        <button id="stopDash" ng-disabled="!serverStatus" class="" style="margin-right:15px;display:inline-block;" ng-click="stopServer()">Stop server</button>
-        <button id="startDash" ng-disabled="serverStatus" class="" style="display:inline-block;" ng-click="startServer()">Start server</button>
+        <div style="width:300px;">
+            <button id="stopDash" ng-disabled="!serverStatus" class="" style="margin-right:15px;display:inline-block;" ng-click="stopServer()">Stop server</button>
+            <button id="startDash" ng-disabled="serverStatus" class="" style="display:inline-block;" ng-click="startServer()">Start server</button>
+        </div>
     </div>
+
 
 
 </body>

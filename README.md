@@ -18,9 +18,16 @@ It would be nice if you are able to contact me on Slack (swttt is my username th
 
 ## Changelog
 
+**Version 0.0.2**
+
+- Fixed crash when not providing bearertoken on fresh install
+- Added link to the app settings page when the dashboard is running
+- Added setting to hide sidebar on page reload
+- Added app icons (when saved to homescreen etc.)
+
 **Version 0.0.1**
 
-Initial BETA release
+- Initial BETA release
 
 
 
