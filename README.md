@@ -18,6 +18,12 @@ It would be nice if you are able to contact me on Slack (swttt is my username th
 
 ## Changelog
 
+**Version 0.0.3**
+
+- Fixed getting baseurl as ip (not the best way :) )
+- Added setting to set default page on load
+
+
 **Version 0.0.2**
 
 - Fixed crash when not providing bearertoken on fresh install
