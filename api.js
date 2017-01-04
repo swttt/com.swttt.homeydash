@@ -36,5 +36,17 @@ module.exports = [
 
             // access /?foo=bar as args.query.foo
         }
+    }, {
+        description: 'Get current local ip',
+        method: 'GET',
+        path: '/currentip',
+        fn: function(callback, args) {
+            var result = Homey.app.currentIp();
+
+            // callback follows ( err, result )
+            callback(null, result);
+
+            // access /?foo=bar as args.query.foo
+        }
     }
 ]

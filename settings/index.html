@@ -6,10 +6,11 @@
     <script type="text/javascript" src="/manager/webserver/assets/js/angular.js"></script>
     <script>
         angular.module('homeydashSettings', [])
-            .controller('settingsCtrl', ['$scope', '$location', function($scope, $location) {
+            .controller('settingsCtrl', ['$scope', function($scope) {
 
                 $scope.config = {};
                 $scope.serverStatus = null;
+
 
                 Homey.get('config', function(err, state) {
                     if (state) {
@@ -36,13 +37,16 @@
                         $scope.error = 'Please fill in your bearer token before you start the server.'
                     } else {
                         $scope.error = false;
-                        $scope.protocol = $location.protocol();
-                        $scope.config.homeyip = $location.host();
                         $scope.serverStatus = true;
                         Homey.set('config', $scope.config);
                         Homey.api('POST', '/start', null, function(err, result) {
                             if (err) return console.error(err);
                             console.log(result);
+                            Homey.api('GET', '/currentip', function(err, result) {
+                                $scope.config.homeyip = result;
+                                $scope.$apply();
+                                console.log(result);
+                            });
                         });
                     }
 
@@ -75,7 +79,7 @@
         </div>
 
         <div ng-if="error" style="color:red;font-weight:bold;margin-top:10px;margin-bottom:10px;width:300px;">{{error}} </div>
-        <div ng-if="serverStatus" style="font-weight:bold;margin-top:10px;margin-bottom:10px;width:300px;">Your HomeyDash is running <a target="_blank" ng-href="//{{config.homeyip}}:1337">here! </a></div>
+        <div ng-if="serverStatus" style="font-weight:bold;margin-top:10px;margin-bottom:10px;width:300px;">Your HomeyDash is running <a target="_blank" ng-href="http://{{config.homeyip}}:1337">here! </a></div>
 
         <div style="width:300px;">
             <button id="stopDash" ng-disabled="!serverStatus" class="" style="margin-right:15px;display:inline-block;" ng-click="stopServer()">Stop server</button>

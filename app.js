@@ -19,7 +19,6 @@ function init() {
     Homey.manager('settings').set('dashboardRunning', false);
 
     Homey.log("HomeyDash started!");
-
     // Check if settings excists
     if (Homey.manager('settings').get('config')) {
         config = Homey.manager('settings').get('config');
@@ -40,6 +39,11 @@ Homey.manager('settings').on('set', function(setting) {
     if (setting == 'config') {
         console.log('New config settings!')
         config = Homey.manager('settings').get('config');
+        Homey.manager('cloud').getLocalAddress(function(err, result) {
+            config.homeyip = result.slice(0, -3);
+            console.log('ip found! ' + config.homeyip);
+        });
+
         if (!config.pages) {
             config.pages = {};
         }
@@ -115,8 +119,14 @@ function saveNewSettings(newconfig) {
 
 };
 
+function currentIp() {
+    return config.homeyip;
+};
+
+
 
 module.exports.init = init;
 module.exports.startServer = startServer;
 module.exports.stopServer = stopServer;
 module.exports.saveNewSettings = saveNewSettings;
+module.exports.currentIp = currentIp;
