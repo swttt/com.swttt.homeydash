@@ -18,6 +18,14 @@ It would be nice if you are able to contact me on Slack (swttt is my username th
 
 ## Changelog
 
+**Version 0.0.4**
+
+- Added kwh (meter_power capability) to capable devices
+- Added setting to hide kwh on widget cards
+- Fixed default page settings for first page in the dropdown
+- Fixed issue that when you removed a page, you still where able to add widgets (with an error)
+- Fixed route to page that doesn't excists (redirects to the main page or default page)
+
 **Version 0.0.3**
 
 - Fixed getting baseurl as ip (not the best way :) )
