@@ -1,30 +1,6 @@
 module.exports = [
 
     {
-        description: 'Start server',
-        method: 'POST',
-        path: '/start',
-        fn: function(callback, args) {
-            var result = Homey.app.startServer();
-
-            // callback follows ( err, result )
-            callback(null, 'Started server');
-
-            // access /?foo=bar as args.query.foo
-        }
-    }, {
-        description: 'Stop server',
-        method: 'POST',
-        path: '/stop',
-        fn: function(callback, args) {
-            var result = Homey.app.stopServer();
-
-            // callback follows ( err, result )
-            callback(null, 'Stopped server');
-
-            // access /?foo=bar as args.query.foo
-        }
-    }, {
         description: 'Save new settings',
         method: 'POST',
         path: '/savesettings',
@@ -37,11 +13,11 @@ module.exports = [
             // access /?foo=bar as args.query.foo
         }
     }, {
-        description: 'Get current local ip',
+        description: 'Get config.json',
         method: 'GET',
-        path: '/currentip',
+        path: '/config.json',
         fn: function(callback, args) {
-            var result = Homey.app.currentIp();
+            var result = Homey.app.getConfig();
 
             // callback follows ( err, result )
             callback(null, result);
