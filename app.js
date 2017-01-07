@@ -11,6 +11,20 @@ function init() {
 
     Homey.log("HomeyDash started!");
 
+    if (!Homey.manager('settings').get('config')) {
+        var newConfig = {
+            "bearertoken": "",
+            "general": {
+                "hidesidebar": false,
+                "defaultpage": false,
+                "hidekwh": true
+            },
+            "pages": {}
+        }
+
+        Homey.manager('settings').set('config', newConfig);
+
+    }
 
 
 }
