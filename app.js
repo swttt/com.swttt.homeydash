@@ -17,7 +17,8 @@ function init() {
             "general": {
                 "hidesidebar": false,
                 "defaultpage": false,
-                "hidekwh": true
+                "hidekwh": true,
+                "idletime": 5
             },
             "pages": {}
         }

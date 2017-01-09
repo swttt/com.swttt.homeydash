@@ -18,6 +18,13 @@ It would be nice if you are able to contact me on Slack (swttt is my username th
 
 ## Changelog
 
+**Version 0.0.5**
+- Removed Hapi service from the app
+- Made the dashboard available trough the athom cloud (secured)
+- Changed the settings page with links (new urls to access the dashboard!)
+- Default pages are stored local (every dashboard can have it's own default page)
+- Added a setting to dimm the dashboard on idle (default 5 seconds, can be disabled)
+
 **Version 0.0.4**
 
 - Added kwh (meter_power capability) to capable devices
