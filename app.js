@@ -20,7 +20,7 @@ function init() {
                 "hidekwh": true,
                 "idletime": 5
             },
-            "pages": {}
+            "pages": []
         }
 
         Homey.manager('settings').set('config', newConfig);
