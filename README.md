@@ -9,9 +9,9 @@ You can expand the dashboard with widgets as well, currently the only active and
 ## How to get started
 After you have installed the app, open a new tab in your browser and go to http://my.athom.com . There you will have to login and wait until you see the big Homey. Do a right mouseclick on the Homey and chose to copy the link. Now paste the link somewhere readable (like notepad), now you can see your bearer token.
 
-Now go back to your Homey then to Settings and chose HomeyDash in the sidebar. Now copy the previous found bearer token into the right field. Chose if you want to auto-start the dashboard on boot and press start server.
+Now go back to your Homey then to Settings and chose HomeyDash in the sidebar. Now copy the previous found bearer token into the right field and click 'save'. NOTE: Do you copy the part AFTER 'bearer_token='
 
-Now you can access the dashboard on http://YOURHOMEYIP:1337
+Click on the links in the settings screen to go to homeydash or to the homeydash settings.
 
 ## I found a bug! What should i do?
 It would be nice if you are able to contact me on Slack (swttt is my username there) or create an issue on the github page (https://github.com/swttt/com.swttt.homeydash/issues)
@@ -26,7 +26,10 @@ It would be nice if you are able to contact me on Slack (swttt is my username th
 - Added a setting to dimm the dashboard on idle (default 5 seconds, can be disabled)
 - Drag and drop for pages and widgets in setup->pages page (to change order)
 - Background image is the same as homey it's background
-
+- Removed dialogs for add and remove page/widgets.
+- Added socket icon for On/Off capability
+- Added dim capability
+- Page name can be changed
 
 
 **Version 0.0.4**
