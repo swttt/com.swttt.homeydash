@@ -11,6 +11,10 @@
     "capability": "dim",
     "class": "light",
     "description": "Dim light"
+  }, {
+    "capability": "measure_temperature",
+    "class": "temperature",
+    "description": "Temperature Sensor"
   }],
   "widgettypes": [{
     "type": "Device",

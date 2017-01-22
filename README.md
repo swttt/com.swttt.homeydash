@@ -30,6 +30,10 @@ It would be nice if you are able to contact me on Slack (swttt is my username th
 - Added socket icon for On/Off capability
 - Added dim capability
 - Page name can be changed
+- Added a reload button
+- Removed the need for bearer token
+- Fixed issue with cookies (and socket.io)
+- Added a warning dialog
 
 
 **Version 0.0.4**
