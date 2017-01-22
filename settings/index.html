@@ -2,90 +2,73 @@
 <html>
 
 <head>
-    <script type="text/javascript" src="/manager/webserver/assets/js/jquery.js"></script>
-    <script type="text/javascript" src="/manager/webserver/assets/js/angular.js"></script>
-    <script>
-        angular.module('homeydashSettings', [])
-            .controller('settingsCtrl', ['$scope', function($scope) {
+  <script type="text/javascript" src="/manager/webserver/assets/js/jquery.js"></script>
+  <script type="text/javascript" src="/manager/webserver/assets/js/angular.js"></script>
+  <script>
+    angular.module('homeydashSettings', [])
+      .controller('settingsCtrl', ['$scope', function($scope) {
 
-                $scope.config = {};
-                $scope.serverStatus = null;
+        $scope.config = {};
+        $scope.serverStatus = null;
 
 
-                Homey.get('config', function(err, state) {
-                    if (state) {
-                        $scope.config = state;
-                        console.log(state);
-                        $scope.$apply();
-                    };
-                });
+        Homey.get('config', function(err, state) {
+          if (state) {
+            $scope.config = state;
+            console.log(state);
+            $scope.$apply();
+          };
+        });
 
-                Homey.get('dashboardRunning', function(err, state) {
-                    $scope.serverStatus = state;
-                    $scope.$apply();
-                });
 
-                $scope.stopServer = function() {
-                    $scope.serverStatus = false;
-                    Homey.api('POST', '/stop', function(err, result) {
-                        if (err) return console.error(err);
-                        console.log(result);
-                    });
-                };
-                $scope.startServer = function() {
-                    if (!$scope.config.bearertoken) {
-                        $scope.error = 'Please fill in your bearer token before you start the server.'
-                    } else {
-                        $scope.error = false;
-                        $scope.serverStatus = true;
-                        Homey.set('config', $scope.config);
-                        Homey.api('POST', '/start', null, function(err, result) {
-                            if (err) return console.error(err);
-                            console.log(result);
-                            Homey.api('GET', '/currentip', function(err, result) {
-                                $scope.config.homeyip = result;
-                                $scope.$apply();
-                                console.log(result);
-                            });
-                        });
-                    }
+        $scope.saveConfig = function() {
+          Homey.set('config', $scope.config);
+          console.log('settings saved!');
 
 
 
-                };
+        };
 
 
 
-            }]);
+      }]);
 
-        function onHomeyReady() {
-            Homey.ready();
-            angular.bootstrap(document, ['homeydashSettings']);
-        }
-    </script>
+    function onHomeyReady() {
+      Homey.ready();
+      angular.bootstrap(document, ['homeydashSettings']);
+    }
+  </script>
 </head>
 
 <body ng-controller="settingsCtrl" ng-cloak>
-    <div style="width:300px;">
-        <img style="" src="logo.png" />
 
-        <div class="field row">
-            <label for="bearertoken">Bearer Token</label>
-            <input style="width:280px;" id="bearertoken" name="bearertoken" ng-model="config.bearertoken" type="text" ng-disabled="serverStatus" />
-        </div>
-        <div class="field row">
-            <label for="autostart">Auto start</label>
-            <input id="autostart" name="autostart" ng-model="config.autostart" type="checkbox" ng-disabled="serverStatus" />
-        </div>
+  <h1>HomeyDash Settings</h1>
 
-        <div ng-if="error" style="color:red;font-weight:bold;margin-top:10px;margin-bottom:10px;width:300px;">{{error}} </div>
-        <div ng-if="serverStatus" style="font-weight:bold;margin-top:10px;margin-bottom:10px;width:300px;">Your HomeyDash is running <a target="_blank" ng-href="http://{{config.homeyip}}:1337">here! </a></div>
 
-        <div style="width:300px;">
-            <button id="stopDash" ng-disabled="!serverStatus" class="" style="margin-right:15px;display:inline-block;" ng-click="stopServer()">Stop server</button>
-            <button id="startDash" ng-disabled="serverStatus" class="" style="display:inline-block;" ng-click="startServer()">Start server</button>
-        </div>
-    </div>
+  <fieldset>
+    <legend>HomeyDash</legend>
+
+    <button onclick="window.open('/app/com.swttt.homeydash/','_blank');">Go to HomeyDash</button>
+    <button onclick="window.open('/app/com.swttt.homeydash/#!/setup','_blank');">Go to settings</button>
+  </fieldset>
+
+
+  <fieldset>
+    <legend>Persist HomeyDash (disable login on session end)</legend>
+    <p>iOS devices end their session on closing or switching apps. Android does the same but takes a while. Since the cookie homey stores is a session cookie, this gets removed and you need to login again. People who don't want to login can use the setting
+      below to store the bearer_token in the localstorage. On every session restart, HomeyDash will add the bearer token to the cookies.<br/>
+      <b>DO NOTE: Localstorage isn't 100% save to store things like a bearer_token. Use this at your own risk!</b><br/><br/>
+      <small>To get the dashboard working on iOS (get past the login screen without cookies set), you will have to visit your cloud url first. (https://YOURCLOUDID.homey.athom.com).</small>
+    </p>
+    <input ng-change="saveConfig()" type="checkbox" name="forcepersist" ng-model="config.forcepersist"> I read the above warning, and agree to store my bearer token inside the localStorage<br/>
+    <label for="bearertoken">Bearer token</label>
+    <input ng-disabled="!config.forcepersist" id="bearertoken" ng-disabled="!config.forcepersist" ng-model="config.bearertoken" type="text" value="">
+    <button ng-click="saveConfig()">Save</button>
+
+  </fieldset>
+
+
+
 
 
 

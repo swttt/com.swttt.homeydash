@@ -1,0 +1,34 @@
+{
+  "capabilities": [{
+    "capability": "onoff",
+    "class": "light",
+    "description": "On/Off Light"
+  }, {
+    "capability": "onoff",
+    "class": "socket",
+    "description": "On/Off Socket"
+  }, {
+    "capability": "dim",
+    "class": "light",
+    "description": "Dim light"
+  }, {
+    "capability": "measure_temperature",
+    "class": "temperature",
+    "description": "Temperature Sensor"
+  }],
+  "widgettypes": [{
+    "type": "Device",
+    "description": "Homey device control widget"
+  }],
+  "dimmingvalues": [
+    5,
+    10,
+    15,
+    30,
+    60,
+    120,
+    300,
+    600,
+    900
+  ]
+}

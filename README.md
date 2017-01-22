@@ -2,6 +2,7 @@
 HomeyDash is a front-end for Homey, intended to use on (wallmounted) tablets, but will work on other devices as well.
 
 **This is a BETA release, that means you can expect bugs or missing functions!**
+**Upgrading from 0.0.4 to 0.0.5 breaks the config, you will have to remove the app and it's settings. Then install again.**
 
 The idea of this dashboard is to integrate more then just devices connected to Homey. Later in the development progress i will add some plugins that can be enabled or disabled in the settings. These plugins for example can be pages with some Plex information, a nice RSS-feed or a sabnzbd dashboard to manage your downloads.
 You can expand the dashboard with widgets as well, currently the only active and working widget is to control ON/OFF devices. Other widgets to control Homey devices will be added soon, and in the future even other type of widgets are possible. (for example a nice weather widget or for our dutchies "NOS in 60 seconden").
@@ -9,14 +10,33 @@ You can expand the dashboard with widgets as well, currently the only active and
 ## How to get started
 After you have installed the app, open a new tab in your browser and go to http://my.athom.com . There you will have to login and wait until you see the big Homey. Do a right mouseclick on the Homey and chose to copy the link. Now paste the link somewhere readable (like notepad), now you can see your bearer token.
 
-Now go back to your Homey then to Settings and chose HomeyDash in the sidebar. Now copy the previous found bearer token into the right field. Chose if you want to auto-start the dashboard on boot and press start server.
+Now go back to your Homey then to Settings and chose HomeyDash in the sidebar. Now copy the previous found bearer token into the right field and click 'save'. NOTE: Do you copy the part AFTER 'bearer_token='
 
-Now you can access the dashboard on http://YOURHOMEYIP:1337
+Click on the links in the settings screen to go to homeydash or to the homeydash settings.
 
 ## I found a bug! What should i do?
 It would be nice if you are able to contact me on Slack (swttt is my username there) or create an issue on the github page (https://github.com/swttt/com.swttt.homeydash/issues)
 
 ## Changelog
+
+**Version 0.0.5**
+- Removed Hapi service from the app
+- Made the dashboard available trough the athom cloud (secured)
+- Changed the settings page with links (new urls to access the dashboard!)
+- Default pages are stored local (every dashboard can have it's own default page)
+- Added a setting to dimm the dashboard on idle (default 5 seconds, can be disabled)
+- Drag and drop for pages and widgets in setup->pages page (to change order)
+- Background image is the same as homey it's background
+- Removed dialogs for add and remove page/widgets.
+- Added socket icon for On/Off capability
+- Added dim capability
+- Page name can be changed
+- Added a reload button
+- Removed the need for bearer token
+- Fixed issue with cookies (and socket.io)
+- Added a warning dialog
+- Added measure_temperature capability
+
 
 **Version 0.0.4**
 
