@@ -2,6 +2,7 @@
 HomeyDash is a front-end for Homey, intended to use on (wallmounted) tablets, but will work on other devices as well.
 
 **This is a BETA release, that means you can expect bugs or missing functions!**
+**Upgrading from 0.0.4 to 0.0.5 breaks the config, you will have to remove the app and it's settings. Then install again.**
 
 The idea of this dashboard is to integrate more then just devices connected to Homey. Later in the development progress i will add some plugins that can be enabled or disabled in the settings. These plugins for example can be pages with some Plex information, a nice RSS-feed or a sabnzbd dashboard to manage your downloads.
 You can expand the dashboard with widgets as well, currently the only active and working widget is to control ON/OFF devices. Other widgets to control Homey devices will be added soon, and in the future even other type of widgets are possible. (for example a nice weather widget or for our dutchies "NOS in 60 seconden").
