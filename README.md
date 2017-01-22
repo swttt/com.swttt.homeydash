@@ -34,6 +34,7 @@ It would be nice if you are able to contact me on Slack (swttt is my username th
 - Removed the need for bearer token
 - Fixed issue with cookies (and socket.io)
 - Added a warning dialog
+- Added measure_temperature capability
 
 
 **Version 0.0.4**
