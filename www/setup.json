@@ -17,9 +17,18 @@
     "description": "Temperature Sensor"
   }],
   "widgettypes": [{
-    "type": "Device",
-    "description": "Homey device control widget"
-  }],
+      "type": "homeydevices",
+      "name": "Homey Devices",
+      "description": "Homey device control widget",
+      "icon": "homeydevice.svg"
+    },
+    {
+      "type": "buienradar",
+      "name": "Buienradar",
+      "description": "Show Buienradar map",
+      "icon": "buienradar.svg"
+    }
+  ],
   "dimmingvalues": [
     5,
     10,
