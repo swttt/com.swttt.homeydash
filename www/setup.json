@@ -1,21 +1,30 @@
 {
   "capabilities": [{
-    "capability": "onoff",
-    "class": "light",
-    "description": "On/Off Light"
-  }, {
-    "capability": "onoff",
-    "class": "socket",
-    "description": "On/Off Socket"
-  }, {
-    "capability": "dim",
-    "class": "light",
-    "description": "Dim light"
-  }, {
-    "capability": "measure_temperature",
-    "class": "temperature",
-    "description": "Temperature Sensor"
-  }],
+      "capability": "onoff",
+      "class": "light",
+      "description": "On/Off Light"
+    },
+    {
+      "capability": "onoff",
+      "class": "socket",
+      "description": "On/Off Socket"
+    },
+    {
+      "capability": "button",
+      "class": "button",
+      "description": "Button"
+    },
+    {
+      "capability": "dim",
+      "class": "light",
+      "description": "Dim light"
+    },
+    {
+      "capability": "measure_temperature",
+      "class": "temperature",
+      "description": "Temperature Sensor"
+    }
+  ],
   "widgettypes": [{
       "type": "homeydevices",
       "name": "Homey Devices",
