@@ -39,7 +39,7 @@
           }
           var reader = new FileReader();
           reader.onload = function() {
-            $scope.importedconfig = JSON.parse(reader.result);
+            $scope.importedconfig = JSON.parse(reader.result).result;
             $scope.$apply();
           }
           reader.readAsText(ele.files[0]);
@@ -84,7 +84,7 @@
 
   <fieldset>
     <legend>Export Config</legend>
-    <a target="_self" href="/app/com.swttt.homeydash/config.json" download="config.json">
+    <a target="_self" href="/api/app/com.swttt.homeydash/config.json" download="config.json">
       <button>Download config</button>
     </a>
 
