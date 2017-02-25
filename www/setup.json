@@ -2,27 +2,37 @@
   "capabilities": [{
       "capability": "onoff",
       "class": "light",
-      "description": "On/Off Light"
+      "description": "On/Off Light",
+      "width": 2,
+      "height": 1
     },
     {
       "capability": "onoff",
       "class": "socket",
-      "description": "On/Off Socket"
+      "description": "On/Off Socket",
+      "width": 2,
+      "height": 1
     },
     {
       "capability": "button",
       "class": "button",
-      "description": "Button"
+      "description": "Button",
+      "width": 1,
+      "height": 1
     },
     {
       "capability": "dim",
       "class": "light",
-      "description": "Dim light"
+      "description": "Dim light",
+      "width": 2,
+      "height": 1
     },
     {
       "capability": "measure_temperature",
       "class": "temperature",
-      "description": "Temperature Sensor"
+      "description": "Temperature Sensor",
+      "width": 1,
+      "height": 1
     }
   ],
   "widgettypes": [{
