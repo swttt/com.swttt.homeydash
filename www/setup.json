@@ -2,37 +2,31 @@
   "capabilities": [{
       "capability": "onoff",
       "class": "light",
-      "description": "On/Off Light",
+      "description": "On/Off",
       "width": 2,
       "height": 1
     },
-    {
-      "capability": "onoff",
-      "class": "socket",
-      "description": "On/Off Socket",
-      "width": 2,
-      "height": 1
-    },
+
     {
       "capability": "button",
       "class": "button",
       "description": "Button",
       "width": 1,
-      "height": 1
+      "height": 2
     },
     {
       "capability": "dim",
       "class": "light",
-      "description": "Dim light",
+      "description": "Dim",
       "width": 2,
-      "height": 1
+      "height": 2
     },
     {
       "capability": "measure_temperature",
       "class": "temperature",
       "description": "Temperature Sensor",
       "width": 1,
-      "height": 1
+      "height": 2
     }
   ],
   "widgettypes": [{
@@ -58,5 +52,16 @@
     300,
     600,
     900
+  ],
+  "icons": [
+    "light.svg",
+    "music.svg",
+    "socket.svg",
+    "spot.svg",
+    "standing_lamp.svg",
+    "table_lamp.svg",
+    "temperature.svg",
+    "thermostat.svg"
+
   ]
 }
