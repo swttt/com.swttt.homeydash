@@ -21,6 +21,15 @@ It would be nice if you are able to contact me on Slack (swttt is my username th
 
 ## Changelog
 
+**Version 0.0.10**
+- Fixed widget background setting
+
+**Version 0.0.9**
+- Widget background setting
+- Overal theme setting
+- Resize widgets horizontal
+- Larger "click" area on widgets
+
 **Version 0.0.8**
 - small bug fixes
 
