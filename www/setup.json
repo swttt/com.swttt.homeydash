@@ -3,7 +3,7 @@
       "capability": "onoff",
       "class": "light",
       "description": "On/Off",
-      "width": 2,
+      "width": 6,
       "height": 1
     },
 
@@ -11,21 +11,21 @@
       "capability": "button",
       "class": "button",
       "description": "Button",
-      "width": 1,
+      "width": 3,
       "height": 2
     },
     {
       "capability": "dim",
       "class": "light",
       "description": "Dim",
-      "width": 2,
+      "width": 6,
       "height": 2
     },
     {
       "capability": "measure_temperature",
       "class": "temperature",
       "description": "Temperature Sensor",
-      "width": 1,
+      "width": 3,
       "height": 2
     }
   ],
@@ -63,5 +63,26 @@
     "temperature.svg",
     "thermostat.svg"
 
+  ],
+  "themes": [
+    "red",
+    "pink",
+    "purple",
+    "deep-purple",
+    "indigo",
+    "blue",
+    "light-blue",
+    "cyan",
+    "teal",
+    "green",
+    "light-green",
+    "lime",
+    "yellow",
+    "amber",
+    "orange",
+    "deep-orange",
+    "brown",
+    "grey",
+    "blue-grey"
   ]
 }
