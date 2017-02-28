@@ -21,6 +21,12 @@ It would be nice if you are able to contact me on Slack (swttt is my username th
 
 ## Changelog
 
+**Version 0.0.11**
+- Added extra widget theme
+- Changed settings page
+- Fixed issue with empty pagename
+- Fixed issue with unallowed chars in pagename and widgetname
+
 **Version 0.0.10**
 - Fixed widget background setting
 
