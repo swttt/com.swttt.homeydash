@@ -21,6 +21,11 @@ It would be nice if you are able to contact me on Slack (swttt is my username th
 
 ## Changelog
 
+**Version 0.0.12**
+- Changed the widgets in the settings page
+- Added dim level to the state text (if enabled)
+- enabled widget vertical resize
+
 **Version 0.0.11**
 - Added extra widget theme
 - Changed settings page
