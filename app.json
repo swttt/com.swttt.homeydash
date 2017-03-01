@@ -3,7 +3,7 @@
   "name": {
     "en": "HomeyDash"
   },
-  "version": "0.0.11",
+  "version": "0.0.12",
   "compatibility": "0.x || 1.x",
   "author": {
     "name": "Bas Jansen",
