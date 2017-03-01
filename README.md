@@ -21,6 +21,9 @@ It would be nice if you are able to contact me on Slack (swttt is my username th
 
 ## Changelog
 
+**Version 0.0.13**
+- typo in page rename function
+
 **Version 0.0.12**
 - Changed the widgets in the settings page
 - Added dim level to the state text (if enabled)
