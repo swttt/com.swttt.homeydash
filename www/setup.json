@@ -40,6 +40,18 @@
       "name": "Buienradar",
       "description": "Show Buienradar map",
       "icon": "buienradar.svg"
+    },
+    {
+      "type": "rss",
+      "name": "RSS",
+      "description": "Show RSS headlines",
+      "icon": "buienradar.svg"
+    },
+    {
+      "type": "video",
+      "name": "Video stream",
+      "description": "Show video stream",
+      "icon": "buienradar.svg"
     }
   ],
   "dimmingvalues": [
@@ -84,5 +96,14 @@
     "brown",
     "grey",
     "blue-grey"
+  ],
+  "buienradar_urls": [{
+      "name": "Netherlands",
+      "url": "http://api.buienradar.nl/image/1.0/RadarMapNL"
+    },
+    {
+      "name": "Europe",
+      "url": "http://api.buienradar.nl/image/1.0/RadarMapEU"
+    }
   ]
 }

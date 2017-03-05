@@ -21,6 +21,11 @@ It would be nice if you are able to contact me on Slack (swttt is my username th
 
 ## Changelog
 
+**Version 0.0.16**
+- Added RSS reader widget
+- Added video widget (html5 videos)
+- Added buienradar widget
+
 **Version 0.0.15**
 - Added remove for touch devices (multiple select)
 - Fixed saving widgets after resize

@@ -34,7 +34,7 @@
 
         $scope.fileNameChanged = function(ele) {
           var file = ele.files[0];
-          if (file.name == 'config.json') {
+          if (file.name == 'HomeyDash.json') {
             $scope.configCheck = true;
           }
           var reader = new FileReader();
@@ -84,7 +84,7 @@
 
   <fieldset>
     <legend>Export Config</legend>
-    <a target="_self" href="/api/app/com.swttt.homeydash/config.json" download="config.json">
+    <a target="_self" href="/api/app/com.swttt.homeydash/config.json" download="HomeyDash.json">
       <button>Download config</button>
     </a>
 
