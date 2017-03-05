@@ -21,6 +21,10 @@ It would be nice if you are able to contact me on Slack (swttt is my username th
 
 ## Changelog
 
+**Version 0.0.17**
+- Minor bug fixes and improvements
+- Added mjpeg support voor video widget
+
 **Version 0.0.16**
 - Added RSS reader widget
 - Added video widget (html5 videos)
