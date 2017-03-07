@@ -21,6 +21,10 @@ It would be nice if you are able to contact me on Slack (swttt is my username th
 
 ## Changelog
 
+**Version 0.0.19**
+- limited mjpeg directive to 2 fps
+- Added alert for 403 error after login 
+
 **Version 0.0.18**
 - Added icons
 - Fixed mjpeg stream
