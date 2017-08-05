@@ -4,7 +4,7 @@
     "description": "A dashboard for Homey",
     "main": "app.js",
     "dependencies": {
-
+        "randomatic": "^1.1.7"
     },
     "devDependencies": {},
     "scripts": {
