@@ -1,9 +1,6 @@
 'use strict';
 
 const Homey = require('homey');
-
-const { HomeyAPI } = require('./lib/athom-api.js')
-
 const randomize = require('randomatic');
 
 class HomeydashApp extends Homey.App {
@@ -23,7 +20,7 @@ class HomeydashApp extends Homey.App {
   // Get the homeyObject needed to auth with athom-api
   async getToken(){
     try{
-      const homeyObject = await HomeyAPI.forCurrentHomey();
+      const homeyObject = await Homey.ManagerApi.getOwnerApiToken();
       return homeyObject;
     }
     catch(err){
