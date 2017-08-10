@@ -6,6 +6,7 @@ module.exports = [
   {
     method: 'GET',
     path: '/auth',
+    public: true,
     fn: function(args, callback) {
       // Check if supplied token matches the stored autkey
       // If they match, get the homeyObject from app.js
