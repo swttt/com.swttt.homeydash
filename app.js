@@ -1,7 +1,6 @@
 'use strict';
 
 const Homey = require('homey');
-const randomize = require('randomatic');
 
 class HomeydashApp extends Homey.App {
 
@@ -9,24 +8,9 @@ class HomeydashApp extends Homey.App {
 
 		this.log('Homeydash is running...');
 
-    // Check if random auth key excists in settings
-    // If not, generate a new one
-    if(!Homey.ManagerSettings.get('authkey')){
-      this.error('No authkey found!')
-      Homey.ManagerSettings.set('authkey', randomize('A0', 6))
-    }
+
 	}
 
-  // Get the homeyObject needed to auth with athom-api
-  async getToken(){
-    try{
-      const homeyObject = await Homey.ManagerApi.getOwnerApiToken();
-      return homeyObject;
-    }
-    catch(err){
-      this.error(err);
-    }
-  }
 
 }
 
